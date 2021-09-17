@@ -30,17 +30,29 @@
 
 <script lang="ts">
   import { onMount } from 'svelte'
+  import { Router, Route, Link } from 'svelte-navigator'
   import env from '~/config/environment'
   import { _ } from '~/config/i18n'
   export let name: string
   let value: string = 'no'
 </script>
 
+<svelte:head />
+
 <main>
-  <h1>Hello {name}! {env.hi}</h1>
-  <h2>{$_('title')}</h2>
-  <p>
-    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-    how to build Svelte apps.
-  </p>
+  <Router>
+    <nav>
+      <Link to="/">Home</Link>
+      <Link to="/a">a</Link>
+    </nav>
+    <Route path="/">
+      <h1>Hello {name}! {env.hi}</h1>
+      <h2>{$_('title')}</h2>
+      <p>
+        Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
+        how to build Svelte apps.
+      </p>
+    </Route>
+    <Route path="/a">Hi</Route>
+  </Router>
 </main>

@@ -1,7 +1,9 @@
 import { dictionary, locale, _ } from 'svelte-i18n'
 import { derived } from 'svelte/store'
 
-const MESSAGE_FILE_URL_TEMPLATE = '/i18n/{locale}.json'
+import env from '~/config/environment'
+
+const MESSAGE_FILE_URL_TEMPLATE = `${env.baseUrl}i18n/{locale}.json`
 
 function setupI18n({ withLocale: _locale } = { withLocale: 'en' }) {
   const messsagesFileUrl = MESSAGE_FILE_URL_TEMPLATE.replace(
