@@ -23,6 +23,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'prefer-spread': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'import/extensions': 'off',
   },
   overrides: [
     {

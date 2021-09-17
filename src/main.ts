@@ -1,10 +1,19 @@
+import { from, map, firstValueFrom } from 'rxjs'
+
+import { setupI18n } from '~/config/i18n'
+
 import App from './App.svelte'
 
-const app = new App({
-  target: document.body,
-  props: {
-    name: 'world',
-  },
-})
-
-export default app
+export default firstValueFrom(
+  from(setupI18n({ withLocale: 'ko' })).pipe(
+    map(
+      () =>
+        new App({
+          target: document.body,
+          props: {
+            name: 'world',
+          },
+        })
+    )
+  )
+)
