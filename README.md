@@ -1,4 +1,4 @@
-# Diary web 
+# Journal web 
 
 ## 실행
 ```shellscript
