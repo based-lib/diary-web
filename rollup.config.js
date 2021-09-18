@@ -1,14 +1,18 @@
+import alias from '@rollup/plugin-alias'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import typescript from '@rollup/plugin-typescript'
 import yaml from '@rollup/plugin-yaml'
+import path from 'path'
 import css from 'rollup-plugin-css-only'
 import livereload from 'rollup-plugin-livereload'
 import svelte from 'rollup-plugin-svelte'
 import { terser } from 'rollup-plugin-terser'
 import sveltePreprocess from 'svelte-preprocess'
+
+const projectRootDir = path.resolve(__dirname)
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -91,6 +95,14 @@ export default {
       'process.env.NODE_ENV': process.env.NODE_ENV,
     }),
     json(),
+    alias({
+      entries: [
+        {
+          find: '~',
+          replacement: path.resolve(projectRootDir, 'src'),
+        },
+      ],
+    }),
   ],
   watch: {
     clearScreen: false,

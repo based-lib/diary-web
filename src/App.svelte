@@ -31,13 +31,14 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { Router, Route, Link } from 'svelte-navigator'
+  import Meta from '~/components/Meta.svelte'
   import env from '~/config/environment'
   import { _ } from '~/config/i18n'
   export let name: string
   let value: string = 'no'
 </script>
 
-<svelte:head />
+<Meta metadata="{{ title: '메인 페이지에요' }}" />
 
 <main>
   <Router>
