@@ -5,12 +5,14 @@ import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import typescript from '@rollup/plugin-typescript'
 import yaml from '@rollup/plugin-yaml'
+import AutoPrefixer from 'autoprefixer'
 import path from 'path'
 import css from 'rollup-plugin-css-only'
 import livereload from 'rollup-plugin-livereload'
 import svelte from 'rollup-plugin-svelte'
 import { terser } from 'rollup-plugin-terser'
 import sveltePreprocess from 'svelte-preprocess'
+import Tailwind from 'tailwindcss'
 
 const projectRootDir = path.resolve(__dirname)
 
@@ -52,7 +54,12 @@ export default {
   },
   plugins: [
     svelte({
-      preprocess: sveltePreprocess({ sourceMap: !production }),
+      preprocess: sveltePreprocess({
+        sourceMap: !production,
+        postcss: {
+          plugins: [Tailwind, AutoPrefixer],
+        },
+      }),
       compilerOptions: {
         // enable run-time checks when not in production
         dev: !production,

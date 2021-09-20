@@ -1,4 +1,8 @@
-<style>
+<style global lang="postcss">
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
   main {
     text-align: center;
     padding: 1em;
@@ -31,6 +35,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { Router, Route, Link } from 'svelte-navigator'
+  import Header from '~/components/Header.svelte'
   import Meta from '~/components/Meta.svelte'
   import env from '~/config/environment'
   import { _ } from '~/config/i18n'
@@ -40,6 +45,7 @@
 
 <Meta metadata="{{ title: '메인 페이지에요' }}" />
 
+<Header />
 <main>
   <Router>
     <nav>
