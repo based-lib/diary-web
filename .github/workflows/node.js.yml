@@ -50,7 +50,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build --if-present
+    - run: npm run build:local --if-present
     - run: tar -zcvf ${{ env.build-name }}.tar.gz public
     - uses: actions/upload-artifact@v2.2.4
       with:
