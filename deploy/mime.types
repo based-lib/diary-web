@@ -7,4 +7,5 @@ types {
     application/x-javascript              js;
     application/atom+xml                  atom;
     application/rss+xml                   rss;
+    application/x-web-app-manifest+json     webapp;
 }

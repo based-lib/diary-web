@@ -84,3 +84,32 @@ jobs:
         port: ${{ secrets.REMOTE_PORT }}
         script: |
           tar -xzvf ${{ env.build-name }}.tar.gz
+          sh ~/deploy.sh
+  deploy_2:
+    env: 
+      build-name: journal-web
+    needs: upload
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      with:
+        name: ${{ env.build-name }}
+    - uses: nogsantos/scp-deploy@master
+      with:
+        src: ${{ env.build-name }}.tar.gz
+        host: ${{ secrets.REMOTE_HOST_2 }}
+        remote: /home/${{ secrets.REMOTE_USERNAME }}
+        port: ${{ secrets.REMOTE_PORT }}
+        user: ${{ secrets.REMOTE_USERNAME }}
+        key: ${{ secrets.REMOTE_KEY }}
+    - name: SSH Remote Commands
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USERNAME }}
+        key: ${{ secrets.REMOTE_KEY }}
+        port: ${{ secrets.REMOTE_PORT }}
+        script: |
+          tar -xzvf ${{ env.build-name }}.tar.gz
+          sh ~/deploy.sh
