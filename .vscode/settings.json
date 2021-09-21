@@ -22,5 +22,8 @@
     },
     "[svelte]": {
       "editor.defaultFormatter": "svelte.svelte-vscode"
-    }
+    },
+    "github-actions.workflows.pinned.workflows": [".github/workflows/node.js.yml"],
+    "github-actions.workflows.pinned.refresh.enabled": true,
+    "github-actions.workflows.pinned.refresh.interval": 30
   }
